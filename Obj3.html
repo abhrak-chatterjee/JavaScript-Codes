@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Objects</h2>
+
+<p id="demo"></p>
+
+<script>
+function people() 
+{
+    this.name = 'abhrak chatterjee';
+}
+function lord() 
+{
+	people.call(this);
+}
+lord.prototype = Object.create(people.prototype);
+const app = new lord();
+document.getElementById("demo").innerHTML =app.name;
+</script>
+</body>
+</html>

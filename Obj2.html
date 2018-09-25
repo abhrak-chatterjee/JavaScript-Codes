@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Objects</h2>
+
+<p id="demo"></p>
+
+<script>
+function person(firstName, lastName, age)
+{
+	this.firstName = firstName,
+	this.lastName = lastName,
+	this.age=age
+}
+var name1 = new person("Abhrak", "Chatterjee",22);
+document.getElementById("demo").innerHTML =
+name1.firstName + " is " + name1.age + " years old.";
+</script>
+
+</body>
+</html>

@@ -1,0 +1,10 @@
+var KegManager = (function($)){
+	var kegs = [];
+	return{
+	addKeg: function(keg) { kegs.push.(keg); }
+	getKegs: function() { return kegs; }
+	}
+})(jQuesry);
+var sodaKeg = new Keg("Soda",100.0);
+KegManager.addKeg(sodaKeg);
+var kegs = KegManager.getKegs();

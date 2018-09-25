@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        
+        td, th {
+            border: 1px solid #bb2a2a;
+            text-align: left;
+            padding: 8px;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+        </style> 
+</head>
+<body>
+
+<p align="center"><strong>Enter Account Details</strong></p>
+<h4 align="center">
+    <table>
+        <tr>
+            <td>Account Number:</td>
+            <td><input type="text" id="accNo" required><br><br></td>
+        </tr>
+        <tr>
+            <td>Account Name:</td>
+            <td><input type="text" id="accName" required><br><br></td>
+        </tr>
+        <tr>
+            <td>Account Balance:<br><br></td>
+            <td><input type="text" id="accBalance" required><br><br></td>
+        </tr>        
+    </table>
+    <input type="button" onclick="myFunction()" value="Create Account">
+    </h4>
+<table id="myTable">
+  
+  
+</table>
+<br>
+
+<script>
+function myFunction() 
+{
+	var accNo = document.getElementById("accNo").value;
+    var accName = document.getElementById("accName").value;
+    var accBal = document.getElementById("accBalance").value;
+    var bank= new BankAcc(accNo,accBal,accName);
+    bankManager.addAcc(bank);
+    var account=bankManager.getAcc();
+    document.getElementById("myTable").innerHTML="<tr><th>AccountNumber</th> <th>Account Name</th><th>Account Balance</th></tr>"
+    for(i=0 ; i < account.length ; i++)
+    {
+        var table = document.getElementById("myTable");
+        document.getElementById("myTable").innerHTML+="<tr><td>"+ account[i].getAccNo()+"</td><td>"+account[i].getName()+"</td><td>"+account[i].getBal()+"</td></tr>";
+    }
+    document.getElementById("accNo").value="";
+    document.getElementById("accName").value="";
+    document.getElementById("accBalance").value="";
+}
+
+function BankAcc(accNo,balance,name)
+{
+    var accNo=accNo;
+    var balance=balance;
+    var name=name;
+    return{
+        getBal : function(){
+            
+            return balance;
+        },
+        getAccNo : function(){
+        
+        return accNo;
+        
+        },
+        getName : function(){
+        
+        return name;
+        
+        }
+    }
+}
+
+var bankManager = (function(){
+    var banks = [];
+    return{
+        addAcc: function(acc) { banks.push(acc); },
+        getAcc: function() { return banks; }
+    }
+})(BankAcc);
+
+</script>
+</body>
+</html>

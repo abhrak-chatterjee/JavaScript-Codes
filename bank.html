@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Bank Account</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+</head>
+<body>
+    <script>
+    function BankAcc(accNo,accBal,accName)
+	{
+	    var accno= accNo;
+	    var accbal=accBal;
+	    var accName=accName;
+	    return 
+	    {
+	        withdraw: function(amount)
+	        {
+	            accbal-=amount;
+	        },
+	        deposit: function(amount)
+	        {
+	            accbal+=amount;
+	        },
+			showBal: function()
+			{
+				document.write(accbal);
+			}
+    	}  
+	} 
+	var acc= new BankAcc(1,2000,"abhrak"); 
+	acc.withdraw(500); 
+	acc.accBal=1000; 
+	acc.showBal();
+    </script>
+</body>
+</html>

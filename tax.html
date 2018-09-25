@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tax Calculator</title>
+</head>
+<body>
+	<table>
+		<tr>
+			<th>Tax calculator</th>
+		</tr>
+		</tr>
+			<td>CTC</td>
+			<td><input type="text" name="CTC" id="CTC"></td>
+		<tr>
+		</tr>
+			<td>80C</td>
+			<td><input type="text" name="80C" id="80C"></td>
+		<tr>
+		</tr>
+			<td>LIC</td>
+			<td><input type="text" name="LIC" id="LIC" onkeyup="cal80C()"></td>
+		<tr>
+		</tr>
+			<td>Mutual Funds</td>
+			<td><input type="text" name="MF" id="MF" onkeyup="cal80C()"></td>
+		<tr>
+		</tr>
+			<td>Provident Fund</td>
+			<td><input type="text" name="PF" id="PF" onkeyup="cal80C()"></td>
+		<tr>
+		</tr>
+			<td>80D</td>
+			<td><input type="text" name="80D" id="80D"></td>
+		<tr>
+		</tr>
+			<td>Total Tax: </td>
+			<td><input type="text" name="totalTax" id="totalTax"></td>
+		<tr>
+		</tr>
+			<td><input type="submit" name="total" id="total" value="Calculate" onclick="calTotalTax()"></td>
+		<tr>		
+	</table>
+	<script type="text/javascript">
+		function cal80C() 
+		{
+	    	var LIC, MF, PF, t80C;
+	    	LIC = document.getElementById("LIC").value;
+	    	MF = document.getElementById("MF").value;
+	    	PF = document.getElementById("PF").value;
+	    	t80C = +LIC + +MF + +PF;
+	    	if(t80C<150000)
+                document.getElementById("80C").value = t80C;
+			else
+				document.getElementById("80C").value = 150000;
+	    }
+	    function calTotalTax()
+		{
+	    	var ctc,amount,c80,tax,d80,tamount;
+			ctc=document.getElementById("CTC").value;
+			c80=document.getElementById("80C").value;
+			d80=document.getElementById("80D").value;
+			amount=ctc-c80-d80;
+			if(amount<200000)
+				tax=0;
+			else if(amount > 200000 && amount<500000)
+			{
+				tax = (amount - 200000)*0.05;
+			}
+			else if(amount > 500000 && amount<1000000)
+			{
+				tax = (amount-200000-500000) * 0.10+(500000)*0.05;    
+			}
+			else if(amount >= 1000000 && amount<1500000)
+			{
+				tax = (500000) * 0.10+(500000)*0.05+(amount -200000-500000-500000) * 0.20;    
+			}
+			else if(amount>=1500000)
+				tax = (500000) * 0.10+(500000)*0.05 +(500000) * 0.20+(amount -200000-500000-500000-500000) * 0.30;  
+			document.getElementById("totalTax").value = tax;
+        }
+    </script>
+</body>
+</html>
